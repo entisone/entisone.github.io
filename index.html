@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jun "LTO" Fabia - City Council Candidate #9</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #004466;
+            --accent-orange: #FF6600;
+            --highlight-red: #D20001;
+            --accent-yellow: #FEE600;
+            --dark-blue: #01377F;
+            --pure-white: #FFFFFF;
+            --off-white: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--off-white);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced Navigation */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.98);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            padding: 0.8rem 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            background: var(--dark-blue);
+            color: var(--accent-yellow);
+            transform: translateY(-2px);
+        }
+
+        /* Modern Header */
+        .header {
+            position: relative;
+            color: var(--pure-white);
+            padding: 7rem 1rem 5rem;
+            text-align: center;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(1,55,127,0.9) 0%, rgba(0,68,102,0.95) 100%),
+                        url('public/jun-cover.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            animation: gradientShift 12s infinite alternate;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .position-tag {
+            color: var(--accent-yellow);
+            font-size: 1.8rem;
+            margin: 1.5rem 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slogan {
+            font-size: 2.2rem;
+            color: var(--accent-yellow);
+            margin: 2rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Interactive Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 12px;
+            border: 4px solid var(--dark-blue);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin: 0 auto;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.03) rotate(1deg);
+        }
+
+        .priority-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .card {
+            background: var(--pure-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 6px solid var(--accent-orange);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,102,0,0.1));
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .card:hover::before {
+            top: -20%;
+            left: -20%;
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .number-badge {
+            background: var(--dark-blue);
+            color: var(--accent-yellow);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            border: 4px solid var(--accent-yellow);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+            animation: pulse 2s infinite;
+            cursor: default;
+        }
+
+        /* Enhanced Lists */
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .custom-list li {
+            padding: 1.2rem 1.5rem;
+            margin: 0.8rem 0;
+            background: rgba(0,68,102,0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-list li:hover {
+            transform: translateX(10px);
+            background: rgba(0,68,102,0.1);
+        }
+
+        .custom-list i {
+            font-size: 1.4rem;
+            color: var(--accent-orange);
+            min-width: 30px;
+        }
+
+        .year-badge {
+            background: var(--dark-blue);
+            color: var(--accent-yellow);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-left: auto;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .header { min-height: 70vh; }
+            .slogan { font-size: 2rem; }
+        }
+
+        @media (max-width: 992px) {
+            .profile-section { gap: 3rem; }
+            .card { padding: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 1rem; padding: 0 1rem; }
+            .header { padding: 6rem 1rem 4rem; min-height: 60vh; }
+            .slogan { font-size: 1.6rem; }
+            .profile-section { grid-template-columns: 1fr; }
+            .number-badge { width: 80px; height: 80px; font-size: 2.5rem; }
+        }
+
+        @media (max-width: 576px) {
+            .nav-links a { padding: 0.5rem 1rem; font-size: 0.95rem; }
+            .header { padding: 5rem 1rem 3rem; }
+            .position-tag { font-size: 1.4rem; }
+            .card { padding: 1.5rem; }
+            .custom-list li { flex-direction: column; align-items: start; }
+            .year-badge { margin-left: 0; }
+        }
+          /* Mobile-First Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem;
+                display: none;
+            }
+
+            .nav-bar.active .nav-links {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 1rem;
+                top: 0.8rem;
+                font-size: 1.5rem;
+                color: var(--dark-blue);
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .header {
+                padding: 5rem 1rem 2rem;
+                min-height: 50vh;
+            }
+
+            .slogan {
+                font-size: 1.4rem;
+                margin: 1rem 0;
+            }
+
+            .profile-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-photo {
+                max-width: 280px;
+            }
+
+            .priority-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 1.5rem;
+                margin: 1rem 0;
+            }
+
+            .number-badge {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .custom-list li {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .year-badge {
+                margin-top: 0.5rem;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                min-height: 60vh;
+                padding: 4rem 1rem 2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .position-tag {
+                font-size: 1.2rem;
+            }
+
+            .slogan {
+                font-size: 1.2rem;
+                letter-spacing: 1px;
+            }
+
+            .card i {
+                font-size: 2rem;
+            }
+
+            .custom-list li {
+                font-size: 0.9rem;
+            }
+
+            .year-badge {
+                font-size: 0.8rem;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem;
+            }
+        }
+
+        /* Add mobile menu toggle */
+        .menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+     <nav class="nav-bar">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#priorities">Priorities</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+        </div>
+    </nav>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="number-badge">9</div>
+            <h1>JUN "LTO" FABIA</h1>
+            <div class="position-tag">For Councilor</div>
+            <div class="slogan">TRANSPORTASYON,<br>HANGGANG<br>TRANSPORMASYON!</div>
+        </div> 
+    </div>
+
+    <div class="container" id="about">
+        <div class="profile-section">
+            <img src="public/jun.jpg" alt="Jun Fabia" class="profile-photo">
+            <div>
+                <h2>About Jun Fabia</h2>
+                <p>A Retired Government Officer with 37 years of dedicated public service in the Transport Sector, committed to improving Mangaldan's infrastructure and community welfare.</p>
+                <br>
+                <div class="card" id="priorities">
+                    <h3>Key Priorities</h3>
+                    <div class="priority-grid">
+                        <div class="card">
+                            <i class="fas fa-car-side fa-beat"></i>
+                            <h4>Free Theoretical Driving Course</h4>
+                            <p>Mandatory TDC requirement for student permit applications in every barangay</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-shield-alt fa-beat"></i>
+                            <h4>Free Accident Insurance</h4>
+                            <p>Comprehensive coverage for all public transport drivers (TODA, PODA)</p>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-hand-holding-heart fa-beat"></i>
+                            <h4>Senior Citizen Support</h4>
+                            <p>Cash gifts for seniors at 60, 65, 70 & 75 years old</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" id="education">
+            <h2>Education Background</h2>
+            <ul class="custom-list">
+                <li>
+                    <i class="fas fa-chalkboard-user"></i>
+                    <div>
+                        <strong>Primary and Intermediate</strong>
+                        <span class="year-badge">1969-1975</span>
+                        <p>Mangaldan Central School</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-university"></i>
+                    <div>
+                        <strong>Secondary Education</strong>
+                        <span class="year-badge">1975-1979</span>
+                        <p>Mangaldan National High School</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-graduation-cap"></i>
+                    <div>
+                        <strong>College Degree</strong>
+                        <span class="year-badge">1979-1989</span>
+                        <p>University of Pangasinan - BS Commerce/Accounting</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-certificate"></i>
+                    <div>
+                        <strong>Postgraduate Studies</strong>
+                        <span class="year-badge">2010-2012</span>
+                        <p>Lyceum Northwestern Colleges - Master in Business Administration</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div class="card" id="experience">
+            <h2>Employment &amp; Work Experience</h2>
+            <ul class="custom-list">
+                <li>
+                    <i class="fas fa-briefcase"></i>
+                    <div>
+                        <strong>Officer in Charge</strong>
+                        <span class="year-badge">2007 - 2010</span>
+                        <p>LTO Dagupan City District Office</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-briefcase"></i>
+                    <div>
+                        <strong>Officer in Charge</strong>
+                        <span class="year-badge">2013</span>
+                        <p>LTO Lingayen District Office</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-briefcase"></i>
+                    <div>
+                        <strong>Assistant Chief</strong>
+                        <span class="year-badge">2013 - 2018</span>
+                        <p>LTO San Carlos City Disctrict Office</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-briefcase"></i>
+                    <div>
+                        <strong>Assistant Chief</strong>
+                        <span class="year-badge">2018 - 2021</span>
+                        <p>LTO Agoo District Office</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-briefcase"></i>
+                    <div>
+                        <strong>Officer In Charge</strong>
+                        <span class="year-badge">2023</span>
+                        <p>LTO BHF Plaza Licensing Center</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navBar = document.querySelector('.nav-bar');
+            navBar.classList.toggle('active');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
